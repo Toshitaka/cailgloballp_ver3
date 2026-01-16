@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="CAIL - Character AI Lab. Reinventing Human Communication through character-led AI.">
+    <title>CAIL - Character AI Lab | Reinventing Human Communication</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content glass-card">
+            <button class="modal-close" id="modalClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+            <h2 class="modal-title" data-en="Get in Touch" data-jp="お問い合わせ">Get in Touch</h2>
+            <p class="modal-subtitle" data-en="Let's discuss how CAIL can transform your vision."
+                data-jp="CAILがあなたのビジョンをどのように実現できるか、お話しましょう。">Let's discuss how CAIL can
+                transform your vision.</p>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" data-en="Name" data-jp="お名前">Name</label>
+                    <input type="text" id="name" name="name" required data-placeholder-en="Your name"
+                        data-placeholder-jp="お名前" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="company" data-en="Company" data-jp="会社名">Company</label>
+                    <input type="text" id="company" name="company" data-placeholder-en="Your company"
+                        data-placeholder-jp="会社名" placeholder="Your company">
+                </div>
+                <div class="form-group">
+                    <label for="email" data-en="Email" data-jp="メールアドレス">Email</label>
+                    <input type="email" id="email" name="email" required data-placeholder-en="your@email.com"
+                        data-placeholder-jp="your@email.com" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="message" data-en="Message" data-jp="メッセージ">Message</label>
+                    <textarea id="message" name="message" rows="4" data-placeholder-en="How can we help?"
+                        data-placeholder-jp="どのようなご用件でしょうか？" placeholder="How can we help?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large btn-full" data-en="SEND"
+                    data-jp="送信">SEND</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-cail">CAIL</span>
+                <span class="logo-subtext">CHARACTER AI LAB</span>
+            </a>
+            <nav class="nav">
+                <a href="#experience" class="nav-link" data-en="EXPERIENCE" data-jp="体験">EXPERIENCE</a>
+                <a href="#technology" class="nav-link" data-en="TECHNOLOGY" data-jp="技術">TECHNOLOGY</a>
+                <a href="#team" class="nav-link" data-en="TEAM" data-jp="チーム">TEAM</a>
+            </nav>
+            <div class="header-actions">
+                <!-- Language Switcher -->
+                <div class="lang-switcher">
+                    <button class="lang-btn active" id="langEN">EN</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" id="langJP">JP</button>
+                </div>
+                <a href="https://www.apple.com/jp/app-store/" target="_blank" rel="noopener noreferrer"
+                    class="store-badge" aria-label="Download on App Store">
+                    <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="119" height="39" rx="5.5" stroke="currentColor" />
+                        <path
+                            d="M24.5 20.3c0-3.1 2.5-4.6 2.6-4.7-1.4-2.1-3.6-2.4-4.4-2.4-1.9-.2-3.6 1.1-4.6 1.1-.9 0-2.4-1.1-4-1.1-2 0-3.9 1.2-5 3-2.1 3.7-.5 9.1 1.5 12.1 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 3.9-1s2.4 1 4 1c1.6 0 2.7-1.5 3.7-2.9 1.2-1.7 1.6-3.3 1.7-3.4-.1-.1-3.2-1.2-3.2-4.7z"
+                            fill="currentColor" />
+                        <path
+                            d="M21.5 11.1c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.7.8-3.5 1.8-.8.9-1.5 2.3-1.3 3.7 1.4.1 2.8-.7 3.6-1.7z"
+                            fill="currentColor" />
+                        <text x="38" y="16" fill="currentColor" font-size="8" font-family="Inter">Download on the</text>
+                        <text x="38" y="28" fill="currentColor" font-size="12" font-weight="600" font-family="Inter">App
+                            Store</text>
+                    </svg>
+                </a>
+                <a href="https://play.google.com/store/games?hl=ja&pli=1" target="_blank" rel="noopener noreferrer"
+                    class="store-badge" aria-label="Get it on Google Play">
+                    <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="119" height="39" rx="5.5" stroke="currentColor" />
+                        <path d="M14 7.5l12 12.5-12 12.5V7.5z" fill="currentColor" />
+                        <path d="M14 7.5l15 10-3 3-12-13z" fill="currentColor" opacity="0.8" />
+                        <path d="M14 32.5l12-13 3 3-15 10z" fill="currentColor" opacity="0.6" />
+                        <text x="38" y="16" fill="currentColor" font-size="8" font-family="Inter">GET IT ON</text>
+                        <text x="38" y="28" fill="currentColor" font-size="12" font-weight="600"
+                            font-family="Inter">Google Play</text>
+                    </svg>
+                </a>
+                <button class="btn btn-primary contact-btn" id="headerContactBtn">CONTACT</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO Section -->
+    <section class="hero" id="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-label" data-en="A NEW INTERFACE BY SO-DA" data-jp="次世代インターフェース：はちきれそうだ">A NEW
+                    INTERFACE BY SO-DA</span>
+                <h1 class="hero-title">
+                    <span class="hero-title-line" data-en="Reinventing" data-jp="人類の">Reinventing</span>
+                    <span class="hero-title-line" data-en="Human" data-jp="コミュニケーションを">Human</span>
+                    <span class="hero-title-line gradient-text" data-en="Communication."
+                        data-jp="再発明する">Communication.</span>
+                </h1>
+                <div class="hero-cta">
+                    <a href="#experience" class="btn btn-primary btn-large" data-en="Discover SO-DA"
+                        data-jp="SO-DAを体験する">Discover SO-DA</a>
+                    <button class="btn btn-secondary btn-large hero-cta-secondary contact-btn"
+                        id="heroContactBtn">CONTACT</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="images/soda_kun_hero.png" alt="Soda-kun AI Companion" class="hero-image hero-soda-floating">
+            </div>
+        </div>
+    </section>
+
+    <!-- THE SO-DA EXPERIENCE Section (Split View) -->
+    <section class="experience-split" id="experience">
+        <div class="container">
+            <div class="section-header experience-header">
+                <span class="section-label">EXPERIENCE</span>
+                <h2 class="section-title" data-en="SO-DA's experience" data-jp="はちきれそうだ とは">
+                    <span class="gradient-text">SO-DA</span>'s experience
+                </h2>
+                <p class="section-summary"
+                    data-en="A next-generation empathetic interface powered by our proprietary emotional LLM. By transcending the limitations of text-based input, we evolve AI into an intuitive "
+                    companion" that truly connects with the human heart."
+                    data-jp="独自開発の感情LLMを搭載した次世代の共感型インターフェース。テキスト入力の制約を超え、AIを心に寄り添う直感的な「相棒」へと進化させます。">
+                    A next-generation empathetic interface powered by our proprietary emotional LLM. By transcending the
+                    limitations of text-based input, we evolve AI into an intuitive "companion" that truly connects with
+                    the human heart.
+                </p>
+            </div>
+            <div class="split-view">
+                <!-- Left Column: Terminal View -->
+                <div class="split-left">
+                    <div class="terminal-frame">
+                        <img src="images/terminal_screenshot.png" alt="SO-DA Interface" class="terminal-screenshot">
+                    </div>
+                </div>
+                <!-- Right Column: Feature Cards (Vertical Stack) -->
+                <div class="split-right">
+                    <!-- Card 1: Intuitive Non-Text UX -->
+                    <div class="feature-card glass-card-light">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title" data-en="Intuitive Non-Text UX" data-jp="直感的なノンテキストUX">Intuitive
+                                Non-Text UX</h3>
+                            <p class="card-text"
+                                data-en="Our character-driven interface completely eliminates the friction of traditional text input, offering a seamless and natural interaction."
+                                data-jp="キャラクター主導のインターフェースが、煩わしいテキスト入力の負担を完全に排除します。">
+                                Our character-driven interface completely eliminates the friction of traditional text
+                                input, offering a seamless and natural interaction.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 2: Proprietary Empathy -->
+                    <div class="feature-card glass-card-light">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title" data-en="Proprietary Empathy" data-jp="感情を解する独自の知能">Proprietary
+                                Empathy</h3>
+                            <p class="card-text"
+                                data-en="Our proprietary LLM deciphers the emotions beneath the surface of words, fostering deep attachment that goes far beyond mere logic."
+                                data-jp="自社開発LLMが、言葉の裏にある感情を読み解き、論理を超えた深い愛着を醸成します。">
+                                Our proprietary LLM deciphers the emotions beneath the surface of words, fostering deep
+                                attachment that goes far beyond mere logic.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 3: Long-term Retention -->
+                    <div class="feature-card glass-card-light">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                                <polyline points="17 6 23 6 23 12" />
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title" data-en="Long-term Retention" data-jp="圧倒的な継続率">Long-term Retention
+                            </h3>
+                            <p class="card-text"
+                                data-en="By establishing genuine bonds with users, we achieve sustainable growth and retention rates that far surpass conventional AI services."
+                                data-jp="ユーザーとの真の絆を築くことで、従来のAIサービスを凌駕する持続的な成長を実現します。">
+                                By establishing genuine bonds with users, we achieve sustainable growth and retention
+                                rates that far surpass conventional AI services.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNOLOGY Section -->
+    <section class="technology" id="technology">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">TECHNOLOGY</span>
+                <h2 class="section-title" data-en="Proprietary Intelligence." data-jp="独自のインテリジェンス。">
+                    Proprietary Intelligence.
+                </h2>
+            </div>
+            <div class="tech-assets">
+                <!-- Left Card: Emotional -->
+                <div class="asset-badge asset-badge-primary">
+                    <div class="asset-badge-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </div>
+                    <span class="asset-badge-title" data-en="Proprietary Emotional LLM" data-jp="独自開発の感情脳">Proprietary
+                        Emotional LLM</span>
+                    <span class="asset-badge-sub" data-en="Developed by CAIL Lab" data-jp="CAIL Labによる完全自社開発">Developed
+                        by CAIL Lab</span>
+                </div>
+                <!-- Right Card: Rational -->
+                <div class="asset-badge asset-badge-secondary">
+                    <div class="asset-badge-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <circle cx="12" cy="12" r="10" />
+                            <path
+                                d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                    </div>
+                    <span class="asset-badge-title" data-en="Advanced Rational LLM" data-jp="高度な理性脳">Advanced Rational
+                        LLM</span>
+                    <span class="asset-badge-sub" data-en="Integration with Public LLMs"
+                        data-jp="パブリックLLMとの高度な統合">Integration with Public LLMs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSETS Section -->
+    <section class="assets" id="assets">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">STRATEGIC ASSETS</span>
+                <h2 class="section-title" data-en="Backed by Industry Leaders." data-jp="業界リーダーとの連携。">
+                    Backed by Industry Leaders.
+                </h2>
+            </div>
+            <div class="assets-grid">
+                <div class="asset-item">
+                    <div class="asset-logo">
+                        <img src="images/logo_docomo.png" loading="lazy" alt="NTT docomo">
+                    </div>
+                    <div class="asset-metric">
+                        <span class="metric-value" data-en="Tens of Millions" data-jp="数千万">Tens of Millions</span>
+                        <span class="metric-label" data-en="POTENTIAL REACH" data-jp="潜在リーチ数">POTENTIAL REACH</span>
+                    </div>
+                </div>
+                <div class="asset-item">
+                    <div class="asset-logo">
+                        <img src="images/logo_with.png" loading="lazy" alt="with">
+                    </div>
+                    <div class="asset-metric">
+                        <span class="metric-value" data-en="1M+ MAU" data-jp="100万+ MAU">1M+ MAU</span>
+                        <span class="metric-label" data-en="MONTHLY ACTIVE USERS" data-jp="月間アクティブユーザー">MONTHLY ACTIVE
+                            USERS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">TEAM</span>
+                <h2 class="section-title" data-en="The Creators." data-jp="クリエイター">
+                    The Creators.
+                </h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar silhouette-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="32" cy="20" r="12" />
+                            <path d="M12 58c0-11 9-20 20-20s20 9 20 20" />
+                        </svg>
+                    </div>
+                    <h3 class="team-name" data-en="Kon Sen" data-jp="銭 錕">Kon Sen</h3>
+                    <p class="team-credential" data-en="Founder of 'with' (10M+ users)"
+                        data-jp="'with' 創業者（1,000万ユーザー超）">
+                        Founder of "with" (10M+ users)
+                    </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar silhouette-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="32" cy="20" r="12" />
+                            <path d="M12 58c0-11 9-20 20-20s20 9 20 20" />
+                        </svg>
+                    </div>
+                    <h3 class="team-name" data-en="Shinichiro Tamaki" data-jp="玉樹 真一郎">Shinichiro Tamaki</h3>
+                    <p class="team-credential" data-en="Visionary behind the revolutionary UX of the 'Wii'"
+                        data-jp="'Wii' 革新的UXの立役者">
+                        Visionary behind the revolutionary UX of the "Wii"
+                    </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar silhouette-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="32" cy="20" r="12" />
+                            <path d="M12 58c0-11 9-20 20-20s20 9 20 20" />
+                        </svg>
+                    </div>
+                    <h3 class="team-name" data-en="Koshi Watanabe" data-jp="渡邊 耕史">Koshi Watanabe</h3>
+                    <p class="team-credential" data-en="Art Director of 'Uma Musume' and 'Smash Bros.'"
+                        data-jp="'ウマ娘' & 'スマブラ' アートディレクター">
+                        Art Director of "Uma Musume" and "Smash Bros."
+                    </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar silhouette-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="32" cy="20" r="12" />
+                            <path d="M12 58c0-11 9-20 20-20s20 9 20 20" />
+                        </svg>
+                    </div>
+                    <h3 class="team-name" data-en="Toshiaki Nishio" data-jp="西尾 敏晃">Toshiaki Nishio</h3>
+                    <p class="team-credential" data-en="AI Pioneer from rinna. Expert in emotional AI architecture."
+                        data-jp="rinna出身AIパイオニア。感情AIアーキテクチャのエキスパート。">
+                        AI Pioneer from rinna. Expert in emotional AI architecture.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo footer-logo">
+                        <span class="logo-cail">CAIL</span>
+                        <span class="logo-subtext">CHARACTER AI LAB</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="privacy-policy.html" class="footer-link" data-en="Privacy Policy"
+                        data-jp="プライバシーポリシー">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="footer-link" data-en="Terms of Service" data-jp="利用規約">Terms
+                        of Service</a>
+                    <button class="footer-link contact-btn" id="footerContactBtn" data-en="Contact Us"
+                        data-jp="お問い合わせ">Contact Us</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 CAIL Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="particles.js"></script>
+    <script>
+        // Language Switcher Logic
+        let currentLang = 'en';
+        const langEN = document.getElementById('langEN');
+        const langJP = document.getElementById('langJP');
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+
+            // Update button states
+            if (lang === 'en') {
+                langEN.classList.add('active');
+                langJP.classList.remove('active');
+                document.documentElement.lang = 'en';
+                document.body.classList.remove('lang-jp');
+            } else {
+                langJP.classList.add('active');
+                langEN.classList.remove('active');
+                document.documentElement.lang = 'ja';
+                document.body.classList.add('lang-jp');
+            }
+
+            // Update all text content
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = lang === 'en' ? el.dataset.en : el.dataset.jp;
+                if (text) el.textContent = text;
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+                const placeholder = lang === 'en' ? el.dataset.placeholderEn : el.dataset.placeholderJp;
+                if (placeholder) el.placeholder = placeholder;
+            });
+        }
+
+        langEN.addEventListener('click', () => switchLanguage('en'));
+        langJP.addEventListener('click', () => switchLanguage('jp'));
+
+        // Contact Modal Logic
+        const modal = document.getElementById('contactModal');
+        const headerBtn = document.getElementById('headerContactBtn');
+        const heroBtn = document.getElementById('heroContactBtn');
+        const footerBtn = document.getElementById('footerContactBtn');
+        const closeBtn = document.getElementById('modalClose');
+        const form = document.getElementById('contactForm');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        headerBtn.addEventListener('click', openModal);
+        heroBtn.addEventListener('click', openModal);
+        footerBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const body = `Name: ${name}%0D%0ACompany: ${company}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
+            const subject = encodeURIComponent('Inquiry from Corporate Site');
+
+            window.location.href = `mailto:info@cail.inc?subject=${subject}&body=${body}`;
+            closeModal();
+        });
+    </script>
+</body>
+
+</html>
